@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body >
+	<header class="app-header" th:fragment="cabecalho">
+      <a class="app-header__logo" >Projeto</a>
+      <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <div class="app-nav">
+           <div th:if="${#strings.isEmpty(usuario_logado.getUsuario().getFoto())}">
+			 	<img class="app-sidebar__user-avatar" th:src="@{/img/thumbnail.default-avatar.png}" id="fotoSideDisco"/> 
+		   </div>
+           <div th:if="${not #strings.isEmpty(usuario_logado.getUsuario().getFoto())}">
+           		<img class="app-sidebar__user-avatar" th:src="@{/foto/thumbnail.{foto}(foto=${usuario_logado.getUsuario().getFoto()})}" id="fotoSideBanco">
+           </div>
+		   <p style="float:right; padding-top: 15px; padding-right: 40px; color: #fff " th:text="${usuario_logado.getUsuario().getUsername()}">Francisco Sérgio</p>
+           <a style="float:right; padding-top: 15px; color: #212529; text-decoration: none;" th:href="@{/logout}"><i class="fa fa-sign-out fa-lg"></i> Logout</a>
+      </div>
+	</header>
+</body>
+</html>
+
